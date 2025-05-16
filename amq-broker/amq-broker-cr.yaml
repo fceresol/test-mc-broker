@@ -1,0 +1,34 @@
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: amq-broker
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  acceptors:
+    - expose: true
+      name: mirror-amqp
+      port: 5672
+      protocols: dummy
+  adminPassword: dummy
+  adminUser: admin
+  brokerProperties:
+    - 'AMQPConnections.dr-broker.uri=(tcp://amq-broker-mirror-amqp-0-svc.amq-broker-dr.svc.clusterset.local:5672,amq-broker-mirror-amqp-1-svc.amq-broker-dr.svc.clusterset.local:5672,amq-broker-mirror-amqp-2-svc.amq-broker-dr.svc.clusterset.local:5672)?ha=true&retryInterval=100&retryIntervalMultiplier=1.0&reconnectAttempts=-1'
+    - AMQPConnections.dr-broker.connectionElements.mirror.type=MIRROR
+    - AMQPConnections.dr-broker.user=dummy
+    - AMQPConnections.dr-broker.password=dummy
+    - AMQPConnections.dr-broker.retryInterval=5000
+    - AMQPConnections.dr-broker.connectionElements.mirror.messageAcknowledgements=true
+    - AMQPConnections.dr-broker.connectionElements.mirror.queueCreation=true
+    - AMQPConnections.dr-broker.connectionElements.mirror.queueRemoval=true
+  console:
+    expose: true
+  deploymentPlan:
+    image: placeholder
+    jolokiaAgentEnabled: true
+    journalType: nio
+    managementRBACEnabled: true
+    messageMigration: false
+    persistenceEnabled: false
+    requireLogin: false
+    size: 3
