@@ -4,7 +4,6 @@ metadata:
   name: amq-broker-kustomize
 resources:
   - amq-broker-cr.yaml
-  - kustomization.yaml
   - serviceExport-broker-0.yaml
   - serviceExport-broker-1.yaml
   - serviceExport-broker-2.yaml
