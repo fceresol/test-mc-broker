@@ -3,5 +3,5 @@ kind: ServiceExport
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-  name: broker-mirror-amqp-0-svc
+  name: broker-mirror-amqp-2-svc
 
