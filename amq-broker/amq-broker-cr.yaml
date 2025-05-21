@@ -12,7 +12,7 @@ spec:
       protocols: AMQP
     - expose: true
       name: amqp-acceptor
-      port: 61616
+      port: 61617
       protocols: AMQP
   adminPassword: dummy
   adminUser: admin
