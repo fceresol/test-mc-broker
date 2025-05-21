@@ -9,7 +9,7 @@ spec:
     - expose: true
       name: mirror-amqp
       port: 5672
-      protocols: dummy
+      protocols: AMQP
   adminPassword: dummy
   adminUser: admin
   brokerProperties:
